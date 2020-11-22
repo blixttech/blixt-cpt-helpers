@@ -7,7 +7,7 @@ setuptools.setup(
     name="blixt_cpt_helpers",
     version="0.1.0",
     author="Kasun Hewage",
-    author_email="kasun@blixt.tech",
+    author_email="kasun.ch@gmail.com",
     description="Helper functions for CPT",
     long_description=long_description,
     long_description_content_type="text/markdown",
