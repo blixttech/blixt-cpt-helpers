@@ -50,12 +50,26 @@ def inspect_value_from_recipe(attribute, recipe_path):
 
 def get_name_from_recipe(recipe=None):
     name = inspect_value_from_recipe(attribute="name", recipe_path=get_recipe_path())
-    return name or get_value_from_recipe(r'''name\s*=\s*["'](\S*)["']''', recipe=recipe).groups()[0]
+    if name:
+        return name
+    else:
+        result = get_value_from_recipe(r'''name\s*=\s*["'](\S*)["']''', recipe=recipe)
+        if result:
+            return result.groups()[0]
+        else:
+            return None
 
 
 def get_version_from_recipe(recipe=None):
     version = inspect_value_from_recipe(attribute="version", recipe_path=get_recipe_path())
-    return version or get_value_from_recipe(r'''version\s*=\s*["'](\S*)["']''', recipe=recipe).groups()[0]
+    if version:
+        return version
+    else:
+        result = get_value_from_recipe(r'''version\s*=\s*["'](\S*)["']''', recipe=recipe)
+        if result:
+            return result.groups()[0]
+        else:
+            return None
 
 
 def get_version_from_ci():
