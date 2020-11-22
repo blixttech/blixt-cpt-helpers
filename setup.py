@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="blixt_cpt_helpers",
+    name="cpt_helpers",
     version="0.1.0",
     author="Kasun Hewage",
     author_email="kasun.ch@gmail.com",
