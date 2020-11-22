@@ -11,7 +11,7 @@ setuptools.setup(
     description="Helper functions for CPT",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/blixttech/blixt-cpt-helpers",
+    url="https://github.com/blixttech/cpt-helpers",
     packages=setuptools.find_packages(),
     package_data={},
     entry_points = {},
