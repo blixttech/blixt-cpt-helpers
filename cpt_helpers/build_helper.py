@@ -5,8 +5,7 @@ from cpt.printer import Printer
 import os
 import sys
 import re
-import traceback
-import configparser
+import subprocess
 
 
 def hidesensitive(output):
@@ -75,7 +74,19 @@ def get_version_from_recipe(recipe=None):
 def get_version_from_ci():
     printer = Printer(hidesensitive)
     ci_man = CIManager(printer)
-    return re.sub(".*/", "", ci_man.get_branch())
+    if ci_man.is_tag():
+        try:
+            version = subprocess.check_output("git describe --exact-match --tags",
+                                              shell=True).decode().strip()
+        except Exception:
+            version = ""
+    else:
+        version = ci_man.get_branch()
+    version = re.sub("^refs/tags/", "", version)
+    version = re.sub("^.*/v?", "", version)
+    version = re.sub("^v?", "", version)
+
+    return version
 
 
 def get_name_and_version():
