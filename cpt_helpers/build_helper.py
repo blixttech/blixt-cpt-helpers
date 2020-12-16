@@ -7,7 +7,6 @@ import sys
 import re
 import subprocess
 
-
 def hidesensitive(output):
     output_str = str(output)
     output_str = re.sub(r'(CONAN_LOGIN_USERNAME[_\w+]*)=\"(\w+)\"', r'\1="xxxxxxxx"', output_str)
@@ -79,7 +78,7 @@ def get_version_from_ci():
             version = subprocess.check_output("git describe --exact-match --tags",
                                               shell=True).decode().strip()
         except Exception:
-            version = ""
+            return None
     else:
         version = ci_man.get_branch()
     version = re.sub("^refs/tags/", "", version)
@@ -90,4 +89,4 @@ def get_version_from_ci():
 
 
 def get_name_and_version():
-    return get_name_from_recipe(), get_version_from_recipe() or get_version_from_ci()
+    return get_name_from_recipe(), get_version_from_ci() or get_version_from_recipe()
